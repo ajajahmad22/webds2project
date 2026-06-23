@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YONRO | Luxury Property Booking Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        premium: {
+                            gold: '#D4AF37',
+                            dark: '#111111',
+                            muted: '#71717A',
+                            lightBg: '#FAFAFA',
+                            border: '#E4E4E7'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Fine-Tuning for Animations & Hidden Elements */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        /* Soft, premium image transitions */
+        .property-card img {
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .property-card:hover img.static-img {
+            opacity: 0;
+            position: absolute;
+        }
+        .property-card img.hover-img {
+            opacity: 0;
+        }
+        .property-card:hover img.hover-img {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        /* Smooth backdrop blur for premium header */
+        .glass-header {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background-color: rgba(255, 255, 255, 0.85);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-[#FAFAFA] to-[#FFFFFF] font-sans text-premium-dark antialiased">
+
+    <header class="glass-header fixed top-0 left-0 w-full z-50 border-b border-premium-border/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-2xl font-bold tracking-widest text-premium-dark flex items-center gap-2">
+                <span class="w-8 h-8 bg-premium-dark text-white rounded-full flex items-center justify-center text-sm">Y</span>
+                YONRO
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-premium-muted">
+                <a href="#" class="text-premium-dark hover:text-premium-dark transition-colors">Explore</a>
+                <a href="#" class="hover:text-premium-dark transition-colors">Villas</a>
+                <a href="#" class="hover:text-premium-dark transition-colors">Experiences</a>
+                <a href="#" class="hover:text-premium-dark transition-colors">YONRO Plus</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button class="hidden lg:block text-xs font-semibold tracking-wider uppercase border border-premium-dark px-4 py-2 rounded-full hover:bg-premium-dark hover:text-white transition-all duration-300">
+                    Host your space
+                </button>
+                <div class="flex items-center gap-3 border border-premium-border bg-white p-2 rounded-full shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                    <i class="fa-solid fa-bars text-premium-muted px-1"></i>
+                    <div class="w-7 h-7 bg-premium-muted rounded-full flex items-center justify-center text-white text-xs font-semibold">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                </div>
+                <button id="mobileMenuBtn" class="md:hidden text-xl focus:outline-none ml-2">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-white border-b border-premium-border shadow-lg px-6 py-6 transition-all duration-300">
+            <nav class="flex flex-col gap-4 font-medium text-premium-muted">
+                <a href="#" class="text-premium-dark">Explore</a>
+                <a href="#">Villas</a>
+                <a href="#">Experiences</a>
+                <a href="#">YONRO Plus</a>
+                <hr class="border-premium-border my-2">
+                <a href="#" class="text-sm font-semibold text-premium-gold">Host your space</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-20">
+
+        <section class="relative h-[75vh] min-h-[500px] flex items-center justify-center px-6">
+            <div class="absolute inset-0 z-0 overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80" 
+                     alt="Luxury Villa" 
+                     class="w-full h-full object-cover brightness-[0.75]">
+            </div>
+
+            <div class="relative z-10 text-center max-w-4xl mx-auto text-white space-y-6">
+                <span class="text-xs uppercase tracking-[0.3em] text-premium-gold font-semibold block">The Art of Escape</span>
+                <h1 class="text-4xl md:text-6xl font-light tracking-tight leading-tight">
+                    Find Yourself in <span class="font-semibold">Uncharted Luxury</span>
+                </h1>
+                <p class="text-sm md:text-base font-light text-white/80 max-w-xl mx-auto">
+                    A curated collection of architecturally significant villas, hyper-personalized amenities, and absolute seclusion.
+                </p>
+
+                <div class="pt-6">
+                    <div class="bg-white text-premium-dark rounded-2xl p-2 md:p-3 shadow-2xl max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-2 items-center divide-y sm:divide-y-0 sm:divide-x divide-premium-border">
+                        <div class="px-4 text-left py-2 sm:py-0">
+                            <label class="block text-[10px] uppercase tracking-wider font-bold text-premium-muted">Where to?</label>
+                            <input type="text" placeholder="Search destinations" class="w-full text-sm bg-transparent outline-none mt-1 placeholder-premium-muted/70 font-medium">
+                        </div>
+                        <div class="px-4 text-left py-2 sm:py-0">
+                            <label class="block text-[10px] uppercase tracking-wider font-bold text-premium-muted">When</label>
+                            <input type="text" placeholder="Add dates" class="w-full text-sm bg-transparent outline-none mt-1 placeholder-premium-muted/70 font-medium">
+                        </div>
+                        <div class="px-4 flex items-center justify-between gap-2 py-2 sm:py-0">
+                            <div class="text-left">
+                                <label class="block text-[10px] uppercase tracking-wider font-bold text-premium-muted">Guests</label>
+                                <input type="text" placeholder="Add guests" class="w-full text-sm bg-transparent outline-none mt-1 placeholder-premium-muted/70 font-medium">
+                            </div>
+                            <button class="w-12 h-12 bg-premium-dark text-white rounded-xl flex items-center justify-center hover:bg-premium-gold transition-colors duration-300">
+                                <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-6 pt-12">
+            <div id="categorySlider" class="flex items-center gap-8 overflow-x-auto no-scrollbar py-2 border-b border-premium-border/40">
+                </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-6 py-12">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-2xl font-semibold tracking-tight">Featured Collections</h2>
+                    <p class="text-xs text-premium-muted mt-1">Handpicked properties offering rare experiences.</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-xs text-premium-muted font-medium">Live Price Sync</span>
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                </div>
+            </div>
+
+            <div id="propertyGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
+                </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#111] text-white border-t border-white/10 mt-20">
+        <div class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-2 md:grid-cols-5 gap-8">
+            <div class="col-span-2 space-y-4">
+                <span class="text-xl font-bold tracking-widest text-white">YONRO</span>
+                <p class="text-xs text-premium-muted max-w-sm leading-relaxed">
+                    Elevating property rental into fine art. Experience luxury bookings curated globally with architectural elegance and bespoke services.
+                </p>
+                <div class="flex items-center gap-4 text-premium-muted pt-2">
+                    <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-pinterest"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-widest text-premium-gold mb-4">Support</h4>
+                <ul class="text-xs text-premium-muted space-y-2">
+                    <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Cancellation Options</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Safety Protocols</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Report Concern</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-widest text-premium-gold mb-4">Hosting</h4>
+                <ul class="text-xs text-premium-muted space-y-2">
+                    <li><a href="#" class="hover:text-white transition-colors">YONRO Shield Cover</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Hosting Resources</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Community Forum</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Reliable Hosting</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-widest text-premium-gold mb-4">Company</h4>
+                <ul class="text-xs text-premium-muted space-y-2">
+                    <li><a href="#" class="hover:text-white transition-colors">Our Journal</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">The Founders</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Investors</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-white/5 py-6">
+            <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-premium-muted">
+                <div>&copy; 2026 YONRO Inc. All rights reserved.</div>
+                <div class="flex items-center gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data Store for Categories
+        const categories = [
+            { id: 'all', label: 'All Stays', icon: 'fa-globe' },
+            { id: 'beachfront', label: 'Beachfront', icon: 'fa-umbrella-beach' },
+            { id: 'villas', label: 'Luxury Villas', icon: 'fa-building-user' },
+            { id: 'cabins', label: 'Glass Cabins', icon: 'fa-house-chimney-window' },
+            { id: 'castles', label: 'Historical', icon: 'fa-fort-awesome' },
+            { id: 'desert', label: 'Desert Oasis', icon: 'fa-cactus' }
+        ];
+
+        // Data Store for Properties (Simulating static vs animated hover video/GIF states using royalty-free media assets)
+        const properties = [
+            {
+                id: 1,
+                title: "Amangiri-Inspired Estate",
+                category: "desert",
+                location: "Canyon Point, Utah",
+                rating: 4.98,
+                price: 2450,
+                staticImg: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80",
+                hoverImg: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWw0eDR5bnpyejJubWF5NXA1MDl4cTFjdms5NGp0NmZrbjZqbzQxNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LwsCiZP9RI8UM/giphy.gif" // Architectural preview look
+            },
+            {
+                id: 2,
+                title: "The Glass Pavilion",
+                category: "cabins",
+                location: "Reykjavík, Iceland",
+                rating: 4.95,
+                price: 1890,
+                staticImg: "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=600&q=80",
+                hoverImg: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3hmdTZwMzRvNTh2NXh6ZnYwMHZ6dHcwZ3ZkaWRpazRwaG1ndzhzYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26u4b45b8KlgAB7iM/giphy.gif"
+            },
+            {
+                id: 3,
+                title: "Villa Nouvelle Azure",
+                category: "beachfront",
+                location: "Côte d'Azur, France",
+                rating: 4.99,
+                price: 3200,
+                staticImg: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80",
+                hoverImg: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHhkaWhhbno3bXNkbzMxa2RtcXgzZXh4eDlhbHA3OTY0djhveWNsayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7TKyO4LOv3O9KscU/giphy.gif"
+            },
+            {
+                id: 4,
+                title: "Marrakesh Sanctuary Riad",
+                category: "castles",
+                location: "Marrakesh, Morocco",
+                rating: 4.91,
+                price: 1450,
+                staticImg: "https://images.unsplash.com/photo-1539650116574-8efeb43e2750?auto=format&fit=crop&w=600&q=80",
+                hoverImg: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDloNWFwdWNna3h1bnoxN2phYWh2eTYxeXUzcjUxa28weDBuOHhody&ep=v1_internal_images_gif_by_id&ct=g&id=l0ExhcMhm6m3rL2iQ/giphy.gif"
+            },
+            {
+                id: 5,
+                title: "The Obsidian Cliff-edge",
+                category: "villas",
+                location: "Santorini, Greece",
+                rating: 4.97,
+                price: 4100,
+                staticImg: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=600&q=80",
+                hoverImg: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNWY0cmpxejNldml1YmEyaXZscGtzMmxsYTJtNzBjcXptYWV2aGJpMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/kPIs85wMT83v2/giphy.gif"
+            },
+            {
+                id: 6,
+                title: "Nordic A-Frame Haven",
+                category: "cabins",
+                location: "Bergen, Norway",
+                rating: 4.88,
+                price: 980,
+                staticImg: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=600&q=80",
+                hoverImg: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIyb2Y1aHBpdm15bjg4Z29zOHIwaHpjNm4zd3lydWFrcW1sMHRmNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/X6WnnasKAzVbW/giphy.gif"
+            }
+        ];
+
+        // Component State Initialization
+        let activeCategory = 'all';
+
+        // DOM Elements
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const categorySlider = document.getElementById('categorySlider');
+        const propertyGrid = document.getElementById('propertyGrid');
+
+        // Toggle Mobile Navigation Menu pattern
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Initialize and Render Category Filter System
+        function initCategories() {
+            categorySlider.innerHTML = categories.map(cat => `
+                <button onclick="filterCategory('${cat.id}')" 
+                        id="cat-${cat.id}"
+                        class="flex items-center gap-2 pb-3 border-b-2 text-xs font-medium tracking-wide whitespace-nowrap transition-all duration-300 ${
+                            activeCategory === cat.id 
+                            ? 'border-premium-dark text-premium-dark opacity-100' 
+                            : 'border-transparent text-premium-muted opacity-60 hover:opacity-100 hover:border-premium-border'
+                        }">
+                    <i class="fa-solid ${cat.icon} text-sm"></i>
+                    <span>${cat.label}</span>
+                </button>
+            `).join('');
+        }
+
+        // Global Category Selection Logic
+        window.filterCategory = function(catId) {
+            activeCategory = catId;
+            initCategories();
+            renderProperties();
+        };
+
+        // Initialize and Dynamic Rendering of Cards
+        function renderProperties() {
+            const filtered = activeCategory === 'all' 
+                ? properties 
+                : properties.filter(p => p.category === activeCategory);
+
+            if (filtered.length === 0) {
+                propertyGrid.innerHTML = `
+                    <div class="col-span-full py-16 text-center text-premium-muted">
+                        <i class="fa-solid fa-hotel text-3xl mb-3 block opacity-40"></i>
+                        <p class="text-sm">No curated listings available in this category yet.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            propertyGrid.innerHTML = filtered.map(prop => `
+                <div class="property-card group cursor-pointer flex flex-col space-y-3">
+                    <div class="relative aspect-[4/3] rounded-2xl overflow-hidden bg-zinc-100 shadow-sm">
+                        <img src="${prop.staticImg}" 
+                             alt="${prop.title}" 
+                             class="static-img w-full h-full object-cover z-10 relative">
+                        <img src="${prop.hoverImg}" 
+                             alt="${prop.title} Dynamic Preview" 
+                             class="hover-img w-full h-full object-cover absolute top-0 left-0 z-0">
+                        
+                        <button class="absolute top-3 right-3 z-20 text-white/90 drop-shadow-md hover:text-rose-500 hover:scale-110 transition-all">
+                            <i class="fa-regular fa-heart text-lg"></i>
+                        </button>
+                    </div>
+
+                    <div class="flex flex-col flex-1 text-sm">
+                        <div class="flex items-center justify-between font-medium">
+                            <h3 class="text-premium-dark tracking-tight line-clamp-1">${prop.title}</h3>
+                            <div class="flex items-center gap-1 text-xs">
+                                <i class="fa-solid fa-star text-premium-gold text-[11px]"></i>
+                                <span>${prop.rating}</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-premium-muted mt-0.5">${prop.location}</p>
+                        <div class="mt-2 pt-1 border-t border-premium-border/40 flex items-baseline gap-1 text-premium-dark">
+                            <span class="font-semibold text-base">$${prop.price.toLocaleString()}</span>
+                            <span class="text-xs text-premium-muted font-normal">/ night</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Setup Component Onload Execution Lifecycle
+        window.addEventListener('DOMContentLoaded', () => {
+            initCategories();
+            renderProperties();
+            
+            // Premium feature: sticky backdrop opacity control depending on vertical viewport offset
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-sm', 'bg-white/95');
+                } else {
+                    header.classList.remove('shadow-sm', 'bg-white/95');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
